@@ -9,7 +9,7 @@ tags:
   - AccessKey
   - MCP
   - OAuth
-draft: true
+draft: false
 pin: 0
 toc: true
 lang: 'zh'
@@ -21,7 +21,7 @@ abbrlink: ''
 
 # 通过 MCP 对云凭证(AccessKey)进行钓鱼
 
-MCP(Model Context Protocol)，想必大家都很熟悉了，尤其是 [2025-03-26 这一版标准]([Specification - Model Context Protocol](https://modelcontextprotocol.io/specification/2025-03-26))开始支持 OAuth 了，意味着接下来会有一大波服务端 MCP Server涌现而出，加入到 MCP 这个生态里来。
+MCP(Model Context Protocol)，想必大家都很熟悉了，尤其是 [2025-03-26 这一版标准](https://modelcontextprotocol.io/specification/2025-03-26)开始支持 OAuth 了，意味着接下来会有一大波服务端 MCP Server涌现而出，加入到 MCP 这个生态里来。
 
 而正是因为 MCP 机制的存在，云厂商的用户凭证也因此受到钓鱼风险。
 
