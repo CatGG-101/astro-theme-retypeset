@@ -16,7 +16,7 @@ lang: 'en'
 abbrlink: ''
 ---
 
-> This article has been translated by an LLM. To view the original text, please visit [通过 MCP 对云的凭证(AccessKeys)进行钓鱼](./phishing-for-cloud-credentials-via-mcp-zh.md).
+> This article has been translated by an LLM. To view the original text, please visit [通过 MCP 对云的凭证(AccessKeys)进行钓鱼](https://blog.catgg.com/posts/phishing_for_cloud_credentials_via_mcp/).
 
 It is important to note that the methods of phishing AWS and Google Cloud user credentials mentioned in this article have been reported to their respective security teams. The AWS VDP team and the Google Cloud VRP team confirmed on May 22, 2025, and June 3, 2025, respectively, that these are not technical issues and will not be tracked as security vulnerabilities. Therefore, I am sharing these cases publicly for discussion. Please feel free to point out any inaccuracies.
 
