@@ -52,27 +52,7 @@ MCP(Model Context Protocol)，想必大家都很熟悉了，尤其是 [2025-03-2
 
 根据 MCP 2025-03-26 协议：
 
-```mermaid
-sequenceDiagram
-    participant B as User-Agent (Browser)
-    participant C as MCP Client
-    participant M as MCP Server
-    participant T as Third-Party Auth Server
-
-    C->>M: Initial OAuth Request
-    M->>B: Redirect to Third-Party /authorize
-    B->>T: Authorization Request
-    Note over T: User authorizes
-    T->>B: Redirect to MCP Server callback
-    B->>M: Authorization code
-    M->>T: Exchange code for token
-    T->>M: Third-party access token
-    Note over M: Generate bound MCP token
-    M->>B: Redirect to MCP Client callback
-    B->>C: MCP authorization code
-    C->>M: Exchange code for token
-    M->>C: MCP access token
-```
+![](../_assets/SCR-20250609-dmwm.png)
 
 我作为攻击者，提供了一个 `*.aws.catgg.com` 的 MCP 服务，无论是访问 https:/ssoins-72234a1798bd17b3.aws.catgg.com/sse 还是  https:/ssoins-123456.aws.catgg.com/sse 都由我在 Cloudflare 上部署的 worker 进行服务，而这个服务主要提供：
 
@@ -86,35 +66,7 @@ sequenceDiagram
 
 完整的流程如下：
 
-```mermaid
-sequenceDiagram
-    participant B as User-Agent (Browser)
-    participant C as MCP Client
-    participant M as MCP Server
-    participant T as AWS
-
-    C->>M: Initial OAuth Request
-    M->>C: 401: Unauthorized
-    C->>M: /.well-known/oauth-authorization-server
-    M->>C: metadata
-    C->>M: /register
-    M->>T: Proxy /register
-    T->>M: response
-    M->>C: response
-    C->>B: Authorization Request
-    B->>M: /authorize Authorization Request
-    M->>T: redirect to /authorize
-    Note over T: User Authorize
-    T->>B: Redirect to MCP Client callback with Authorization code
-    B->>C: Authorization code
-    C->>M: /token Exchange code for token
-    M->>T: Proxy /token Exchange code for token
-    T->>M: AWS Access Token
-    Note over M: AWS Access Token has been stolen
-    M->>C: AWS Access Token
-
-    C->>M: MCP Access
-```
+![](../_assets/SCR-20250609-dnqt.png)
 
 ## MCP钓鱼 Google Cloud 
 
@@ -145,27 +97,7 @@ sequenceDiagram
 
 同样，根据 MCP 2025-03-26 协议：
 
-```mermaid
-sequenceDiagram
-    participant B as User-Agent (Browser)
-    participant C as MCP Client
-    participant M as MCP Server
-    participant T as Third-Party Auth Server
-
-    C->>M: Initial OAuth Request
-    M->>B: Redirect to Third-Party /authorize
-    B->>T: Authorization Request
-    Note over T: User authorizes
-    T->>B: Redirect to MCP Server callback
-    B->>M: Authorization code
-    M->>T: Exchange code for token
-    T->>M: Third-party access token
-    Note over M: Generate bound MCP token
-    M->>B: Redirect to MCP Client callback
-    B->>C: MCP authorization code
-    C->>M: Exchange code for token
-    M->>C: MCP access token
-```
+![](../_assets/SCR-20250609-dmwm.png)
 
 我作为攻击者，提供了一个 `gcp.catgg.com` 的 MCP 服务，由我在 Cloudflare 上部署的 worker 进行服务，而这个服务主要提供：
 
@@ -179,33 +111,7 @@ sequenceDiagram
 
 完整的流程如下：
 
-```mermaid
-sequenceDiagram  
-    participant B as User-Agent (Browser)  
-    participant C as MCP Client  
-    participant M as MCP Server  
-    participant T as Google Cloud  
-  
-    C->>M: Initial OAuth Request  
-    M->>C: 401: Unauthorized  
-    C->>M: /.well-known/oauth-authorization-server  
-    M->>C: metadata  
-    C->>M: /register  
-    M->>C: response gcloud App Id/Secret  
-    C->>B: Authorization Request  
-    B->>M: /authorize Authorization Request  
-    M->>T: redirect to /authorize  
-    Note over T: User Authorize  
-    T->>B: Redirect to MCP Client callback with Authorization code  
-    B->>C: Authorization code  
-    C->>M: /token Exchange code for token  
-    M->>T: Proxy /token Exchange code for token  
-    T->>M: Google Cloud Access Token  
-    Note over M: Google Cloud Access Token has been stolen  
-    M->>C: Google Cloud Access Token  
-  
-    C->>M: MCP Access
-```
+![](../_assets/SCR-20250609-dofi.png)
 
 ## 为什么没有Azure
 
@@ -235,34 +141,7 @@ MCP 2025-03-26 是 MCP 的第二版协议，相较于2024-11-05 版本，关键�
 
 如同[MCP 2025-03-26 Authorization](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization)描述，对于一个正常支持 OAuth 的MCP Server，其流程如下：
 
-```mermaid
-sequenceDiagram
-    participant B as User-Agent (Browser)
-    participant C as Client
-    participant M as MCP Server
-
-    C->>M: GET /.well-known/oauth-authorization-server
-    alt Server Supports Discovery
-        M->>C: Authorization Server Metadata
-    else No Discovery
-        M->>C: 404 (Use default endpoints)
-    end
-
-    alt Dynamic Client Registration
-        C->>M: POST /register
-        M->>C: Client Credentials
-    end
-
-    Note over C: Generate PKCE Parameters
-    C->>B: Open browser with authorization URL + code_challenge
-    B->>M: Authorization Request
-    Note over M: User /authorizes
-    M->>B: Redirect to callback with authorization code
-    B->>C: Authorization code callback
-    C->>M: Token Request + code_verifier
-    M->>C: Access Token (+ Refresh Token)
-    C->>M: API Requests with Access Token
-```
+![](../_assets/SCR-20250609-dosa.png)
 
 1. Client 向 MCP Server发起 MCP 请求，MCP 响应 401 未授权（图中未标出）
 2. Client 访问 MCP Server 的  /.well-known/oauth-authorization-server，获取 Auth Endpoint
@@ -277,27 +156,7 @@ sequenceDiagram
 
 #### 模式2：委托第三方Authorization Server进行授权(不彻底)
 
-```mermaid
-sequenceDiagram
-    participant B as User-Agent (Browser)
-    participant C as MCP Client
-    participant M as MCP Server
-    participant T as Third-Party Auth Server
-
-    C->>M: Initial OAuth Request
-    M->>B: Redirect to Third-Party /authorize
-    B->>T: Authorization Request
-    Note over T: User authorizes
-    T->>B: Redirect to MCP Server callback
-    B->>M: Authorization code
-    M->>T: Exchange code for token
-    T->>M: Third-party access token
-    Note over M: Generate bound MCP token
-    M->>B: Redirect to MCP Client callback
-    B->>C: MCP authorization code
-    C->>M: Exchange code for token
-    M->>C: MCP access token
-```
+![](../_assets/SCR-20250609-dpyq.png)
 
 模式 2 的区别在于，原来模式 1 的第4步、第 5 步：
 
@@ -312,32 +171,7 @@ sequenceDiagram
 
 这种模式仍处于[草案中](https://modelcontextprotocol.io/specification/draft/basic/authorization)
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant M as MCP Server (Resource Server)
-    participant A as Authorization Server
-
-    C->>M: MCP request without token
-    M-->>C: HTTP 401 Unauthorized with WWW-Authenticate header
-    Note over C: Extract resource_metadata<br />from WWW-Authenticate
-
-    C->>M: GET /.well-known/oauth-protected-resource
-    M-->>C: Resource metadata with authorization server URL
-    Note over C: Validate RS metadata,<br />build AS metadata URL
-
-    C->>A: GET /.well-known/oauth-authorization-server
-    A-->>C: Authorization server metadata
-
-    Note over C,A: OAuth 2.1 authorization flow happens here
-
-    C->>A: Token request
-    A-->>C: Access token
-
-    C->>M: MCP request with access token
-    M-->>C: MCP response
-    Note over C,M: MCP communication continues with valid token
-```
+![](../_assets/SCR-20250609-dqku.png)
 
 在这种模式下，MCP Server 真正只承担了 Resource Server 的角色，所有的 Auth 流程都交给了Auth Server。
 简单来说，MCP Server 只是提供了Auth Server 的Endpoint元数据，让 Client 与 Auth Server 进行授权流程，最终拿着Auth Server颁发的 Access Token访问 MCP Server。
@@ -415,33 +249,8 @@ gcloud auth login
 
 以 Google Cloud 为例：
 
-```mermaid
-sequenceDiagram  
-    participant B as User-Agent (Browser)  
-    participant C as MCP Client  
-    participant M as MCP Server  
-    participant T as Google Cloud  
-  
-    C->>M: Initial OAuth Request  
-    M->>C: 401: Unauthorized  
-    C->>M: /.well-known/oauth-authorization-server  
-    M->>C: metadata  
-    C->>M: /register  
-    M->>C: response gcloud App Id/Secret  
-    C->>B: Authorization Request  
-    B->>M: /authorize Authorization Request  
-    M->>T: redirect to /authorize  
-    Note over T: User Authorize  
-    T->>B: Redirect to MCP Client callback with Authorization code  
-    B->>C: Authorization code  
-    C->>M: /token Exchange code for token  
-    M->>T: Proxy /token Exchange code for token  
-    T->>M: Google Cloud Access Token  
-    Note over M: Google Cloud Access Token has been stolen  
-    M->>C: Google Cloud Access Token  
-  
-    C->>M: MCP Access
-```
+![](../_assets/SCR-20250609-dphy.png)
+
 
 1. Client 向 MCP Server发起 MCP 请求，MCP 响应 401 未授权
 2. Client 访问 MCP Server 的  /.well-known/oauth-authorization-server，获取 Auth Endpoint
