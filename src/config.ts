@@ -6,9 +6,9 @@ export const themeConfig: ThemeConfig = {
     // site title
     title: 'CatGG\'s Blog',
     // site subtitle
-    subtitle: '',
+    subtitle: 'Think, Write, Share',
     // site description
-    description: 'Write, Think, Share',
+    description: '',
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
     i18nTitle: true, // true, false
     // author name
