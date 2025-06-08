@@ -89,7 +89,7 @@ MCP(Model Context Protocol)，想必大家都很熟悉了，尤其是 [2025-03-2
 ![](../_assets/Pasted%20image%2020250607214450.png)
 
 3. 在弹出的登录、授权页面完成对"Google Cloud SDK"授权（就像使用 gcloud 命令行工具一样）
-![](../_assets/Pasted%20image%2020250607214314.png)
+![](../_assets/Pasted%20image%2020250608230125.png)
 
 这时，攻击者就可以获取受害者的 Google 以及 Google Cloud 访问权限。
 

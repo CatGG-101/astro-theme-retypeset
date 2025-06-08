@@ -84,7 +84,8 @@ As a victim:
 ![](../_assets/Pasted%20image%2020250607214020.png)
 ![](../_assets/Pasted%20image%2020250607214450.png)
 3. Complete the authorization for "Google Cloud SDK" on the login and authorization page (just like using the gcloud command-line tool).
-![](../_assets/Pasted%20image%2020250607214314.png)
+
+![](../_assets/Pasted%20image%2020250608230125.png)
 
 At this point, the attacker can obtain the victim's Google and Google Cloud access.
 
