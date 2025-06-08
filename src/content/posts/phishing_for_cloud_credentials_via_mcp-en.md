@@ -13,7 +13,7 @@ draft: false
 pin: 0
 toc: true
 lang: 'en'
-abbrlink: ''
+abbrlink: 'phishing-for-cloud-credentials-via-mcp'
 ---
 
 > This article has been translated by an LLM. To view the original text, please visit [通过 MCP 对云的凭证(AccessKeys)进行钓鱼](https://blog.catgg.com/posts/phishing_for_cloud_credentials_via_mcp/).

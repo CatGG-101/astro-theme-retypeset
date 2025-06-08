@@ -13,7 +13,7 @@ draft: false
 pin: 0
 toc: true
 lang: 'zh'
-abbrlink: ''
+abbrlink: 'phishing-for-cloud-credentials-via-mcp'
 ---
 
 郑重说明，该文章提到的对 AWS 以及 Google Cloud 的用户凭证进行钓鱼攻击的方式已经分别与其安全团队反馈，且AWS VDP 团队、Google Cloud VRP 团队分别于 2025 年 5 月 22 日、2025 年 6 月 3 日确认：这不是技术问题，不作为安全漏洞跟踪。
