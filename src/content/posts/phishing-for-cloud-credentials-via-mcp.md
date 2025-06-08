@@ -12,7 +12,7 @@ tags:
 draft: false
 pin: 0
 toc: true
-lang: 'zh'
+lang: zh
 abbrlink: ''
 ---
 
