@@ -30,7 +30,7 @@ MCP(Model Context Protocol)，想必大家都很熟悉了，尤其是 [2025-03-2
 首先请看受害者视频：
 
 
-<video src="/videos/AWS_MCP.mov" controls></video>
+<video src="/videos/AWS_MCP.mp4" controls></video>
 
 ### 发生了什么
 
@@ -120,7 +120,7 @@ sequenceDiagram
 
 首先请看受害者视频：
 
-<video src="/videos/GCP_MCP.mov" controls></video>
+<video src="/videos/GCP_MCP.mp4" controls></video>
 
 ### 发生了什么
 
