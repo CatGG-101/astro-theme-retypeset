@@ -2,12 +2,14 @@ import type { Element } from 'hast'
 import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
+
 import Compress from 'astro-compress'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
+import rehypeMermaid from 'rehype-mermaid'
 import rehypeSlug from 'rehype-slug'
 import remarkDirective from 'remark-directive'
 import remarkMath from 'remark-math'
@@ -69,6 +71,9 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    syntaxHighlight: {
+      excludeLangs: ['mermaid'],
+    },
     remarkPlugins: [
       remarkDirective,
       remarkMath,
@@ -77,6 +82,7 @@ export default defineConfig({
       remarkReadingTime,
     ],
     rehypePlugins: [
+      rehypeMermaid,
       rehypeKatex,
       rehypeSlug,
       rehypeCodeCopyButton,
