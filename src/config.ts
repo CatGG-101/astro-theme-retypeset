@@ -159,10 +159,10 @@ export const themeConfig: ThemeConfig = {
         name: 'Email',
         url: 'none',
       },
-      // {
-      //   name: 'X',
-      //   url: 'https://x.com/radishzz_',
-      // },
+      {
+        name: 'X',
+        url: 'https://x.com/catgg_101',
+      },
     ],
     // year of website start
     startYear: 2025,
