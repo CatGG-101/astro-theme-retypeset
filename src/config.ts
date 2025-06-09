@@ -74,21 +74,21 @@ export const themeConfig: ThemeConfig = {
     // giscus
     // https://giscus.app/
     giscus: {
-      repo: '',
-      repoID: '',
-      category: '',
-      categoryID: '',
+      repo: 'CatGG-101/astro-theme-retypeset',
+      repoID: 'R_kgDOO37feQ',
+      category: 'Announcements',
+      categoryID: 'DIC_kwDOO37fec4CrPZz',
       mapping: 'pathname',
       strict: '0',
       reactionsEnabled: '1',
       emitMetadata: '0',
-      inputPosition: 'bottom',
+      inputPosition: 'top',
     },
     // waline
     // https://waline.js.org/en/
     waline: {
       // server url
-      serverURL: 'https://retypeset-comment.radishzz.cc',
+      serverURL: '',
       // emoji url
       emoji: [
         'https://unpkg.com/@waline/emojis@1.2.0/tw-emoji',
